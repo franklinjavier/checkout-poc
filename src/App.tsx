@@ -3,6 +3,7 @@ import { createBrowserRouter, Outlet, redirect, RouterProvider } from 'react-rou
 import * as root from './routes/root'
 import * as address from './routes/address'
 import * as payment from './routes/payment'
+import * as success from './routes/success'
 import Cart, { loader as cartLoader, action as cartAction } from './routes/cart'
 
 const HOME_PATH = '/sacola'
@@ -41,6 +42,12 @@ const router = createBrowserRouter([
             loader: payment.loader,
             action: payment.action,
             id: 'payment',
+          },
+          {
+            path: 'transacional/sucesso',
+            element: <success.default />,
+            loader: success.loader,
+            id: 'success',
           },
         ],
       },

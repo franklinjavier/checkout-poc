@@ -6,7 +6,6 @@ import {
   ActionFunctionArgs,
   useActionData,
   redirect,
-  useFetcher,
   useNavigation,
 } from 'react-router-dom'
 import { Box } from '../components/box/box'

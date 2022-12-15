@@ -36,12 +36,12 @@ type DataLoader = {
 export default function Address() {
   const data = useLoaderData() as DataLoader
   const config = useRouteLoaderData('root')
-  console.log({ config, data })
+  // console.log({ config, data })
   const submit = useSubmit()
 
   return (
     <div style={{ display: 'flex', gap: '16px' }}>
-      <Box style={{ width: '75%' }}>
+      <Box>
         <h2>Selecione um endereço de envio</h2>
         <Form
           method="post"
