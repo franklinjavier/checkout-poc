@@ -1,0 +1,57 @@
+import { createBrowserRouter, Outlet, redirect, RouterProvider } from 'react-router-dom'
+
+import * as root from './routes/root'
+import * as address from './routes/address'
+import * as payment from './routes/payment'
+import Cart, { loader as cartLoader, action as cartAction } from './routes/cart'
+
+const HOME_PATH = '/sacola'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    loader: () => redirect(HOME_PATH),
+  },
+  {
+    path: HOME_PATH,
+    element: <root.default />,
+    loader: root.loader,
+    id: 'root', // usado para recuperar com o hook useRouteLoaderData 🔥
+    children: [
+      {
+        path: '/sacola',
+        element: <Outlet />,
+        children: [
+          {
+            path: '',
+            element: <Cart />,
+            loader: cartLoader,
+            action: cartAction,
+          },
+          {
+            path: 'transacional/endereco',
+            element: <address.default />,
+            loader: address.loader,
+            action: address.action,
+            id: 'address',
+          },
+          {
+            path: 'transacional/pagamento',
+            element: <payment.default />,
+            loader: payment.loader,
+            action: payment.action,
+            id: 'payment',
+          },
+        ],
+      },
+    ],
+  },
+])
+
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => router.dispose())
+}
+
+export default function App() {
+  return <RouterProvider router={router} />
+}
