@@ -19,7 +19,7 @@ import { PaymentType } from '../types/payment'
 import { makePayment } from '../models/payment'
 
 export async function loader() {
-  const [cart, address] = await Promise.all([await getCart(), await getAddress()])
+  const [cart, address] = await Promise.all([getCart(), getAddress()])
   return json({ cart, address })
 }
 
