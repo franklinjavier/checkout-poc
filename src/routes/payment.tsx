@@ -6,6 +6,8 @@ import {
   ActionFunctionArgs,
   useActionData,
   redirect,
+  useFetcher,
+  useNavigation,
 } from 'react-router-dom'
 import { Box } from '../components/box/box'
 import { CartSummary } from '../components/cart/cart-summary'
@@ -32,9 +34,6 @@ export async function action({ request }: ActionFunctionArgs) {
   if (!formData.name) {
     errors.name = 'Informe um títular'
   }
-  if (!formData.expire) {
-    errors.expire = 'Informe uma data de validade'
-  }
 
   if (Object.keys(errors).length) return json({ errors }, { status: 422 })
 
@@ -59,10 +58,12 @@ export default function Address() {
   const data = useLoaderData() as DataLoader
   const config = useRouteLoaderData('root')
   const actionData = useActionData() as DataAction
-  // console.log({ config, data, actionData })
+  const navigation = useNavigation()
+  const isPending = navigation.state === 'submitting'
+  console.log({ config, data, actionData })
 
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <fieldset style={{ display: 'flex', gap: '16px' }} disabled={isPending}>
       <Box style={{ width: '75%' }}>
         <h2>Pagamento</h2>
         <Form method="post" id="payment">
@@ -74,10 +75,10 @@ export default function Address() {
 
       <aside style={{ width: '25%' }}>
         <button type="submit" className="btn" style={{ marginBlock: 10 }} form="payment">
-          Finalizar Pedido
+          {isPending ? 'Pagando...' : 'Finalizar Pedido'}
         </button>
         <CartSummary cart={data.cart} />
       </aside>
-    </div>
+    </fieldset>
   )
 }

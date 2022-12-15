@@ -85,3 +85,12 @@ input[type='number'] {
   border-color: rgb(212 212 216);
   line-height: 1.5rem;
 }
+
+fieldset {
+  border: none;
+  margin: 0;
+}
+
+fieldset:disabled {
+  opacity: 0.5;
+}

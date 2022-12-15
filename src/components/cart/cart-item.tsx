@@ -7,11 +7,11 @@ type CartItemProps = {
 export function CartItem({ item }: CartItemProps) {
   const submit = useSubmit()
   return (
-    <div style={{ display: 'flex' }}>
+    <details style={{ display: 'flex' }}>
       <figure>
         <img src={item.product.imageObjects[0].small} alt={item.product.name} />
       </figure>
-      <div>
+      <summary>
         <p>{item.product.name}</p>
         <small style={{ color: 'gray' }}>Cod {item.product.sku}</small>
         <Form
@@ -26,7 +26,7 @@ export function CartItem({ item }: CartItemProps) {
             <option value="3">3</option>
           </select>
         </Form>
-      </div>
-    </div>
+      </summary>
+    </details>
   )
 }
