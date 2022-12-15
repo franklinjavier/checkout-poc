@@ -16,3 +16,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
     </label>
   )
 })
+
+export function InputError(props: JSX.IntrinsicElements['span']) {
+  return <span style={{ color: 'red', fontSize: '14px' }} {...props} />
+}
