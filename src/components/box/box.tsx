@@ -1,5 +1,3 @@
-import { ReactComponentElement } from 'react'
-
 type BoxProps = React.ComponentPropsWithoutRef<'div'> & {
   children: React.ReactNode[] | React.ReactElement
 }
@@ -8,7 +6,7 @@ export function Box({ style, ...props }: BoxProps) {
   return (
     <div
       style={{
-        padding: '0px 16px',
+        padding: '0px 16px 16px',
         border: '1px solid rgb(236, 236, 236)',
         WebkitBoxPack: 'justify',
         justifyContent: 'space-between',

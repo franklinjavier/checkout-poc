@@ -5,7 +5,7 @@ export function Container(props: BoxProps) {
   return (
     <div
       style={{
-        maxWidth: '1220px',
+        maxWidth: '980px',
         marginLeft: 'auto',
         marginRight: 'auto',
         position: 'relative',

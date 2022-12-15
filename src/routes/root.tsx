@@ -1,6 +1,7 @@
-import { Outlet, useLoaderData } from 'react-router-dom'
+import { Link, Outlet, useLoaderData } from 'react-router-dom'
 import { Container } from '../components/container/container'
-import { Config, getConfig } from '../models/config'
+import type { Config } from '../types/config'
+import { getConfig } from '../models/config'
 
 export async function loader() {
   return await getConfig()
@@ -15,7 +16,9 @@ export default function Root() {
     <>
       <Container>
         <header>
-          <h1>{config.name}</h1>
+          <h1>
+            <Link to=".">{config.name}</Link>
+          </h1>
         </header>
         <Outlet />
       </Container>

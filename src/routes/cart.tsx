@@ -2,7 +2,9 @@ import { ActionFunctionArgs, json, useLoaderData, useRouteLoaderData } from 'rea
 import { Box } from '../components/box/box'
 import { Button } from '../components/button/button'
 import { CartItem } from '../components/cart/cart-item'
-import { CartTypeType, getCart } from '../models/cart'
+import type { CartType } from '../types/cart'
+import { getCart } from '../models/cart'
+import { pluralize } from '../utils/pluralize'
 
 export async function loader() {
   const cart = await getCart()
@@ -18,7 +20,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return null
 }
 
-type LoaderData = CartTypeType
+type LoaderData = CartType
 
 export default function Cart() {
   const cart = useLoaderData() as LoaderData
@@ -29,7 +31,7 @@ export default function Cart() {
     <div style={{ display: 'flex', gap: '16px' }}>
       <Box>
         <h2>
-          Sacola ({cartLength} Produto{cartLength > 1 ? 's' : ''})
+          Sacola ({cartLength} {pluralize(cartLength, 'Produto', 'Produtos')})
         </h2>
 
         {cart.items.map((item) => (

@@ -5,14 +5,14 @@ import {
   Form,
   useSubmit,
   ActionFunctionArgs,
-  redirect,
 } from 'react-router-dom'
 import { AddressItem } from '../components/address/address-item'
 import { Box } from '../components/box/box'
 import { Button } from '../components/button/button'
-import type { AddressType } from '../models/address'
+import type { AddressType } from '../types/address'
 import { getAddress } from '../models/address'
-import { CartTypeType, getCart } from '../models/cart'
+import { getCart } from '../models/cart'
+import type { CartType } from '../types/cart'
 
 export async function loader() {
   const [cart, address] = await Promise.all([await getCart(), await getAddress()])
@@ -30,7 +30,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 type DataLoader = {
   address: AddressType
-  cart: CartTypeType
+  cart: CartType
 }
 
 export default function Address() {

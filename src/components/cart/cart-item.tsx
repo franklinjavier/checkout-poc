@@ -1,5 +1,5 @@
 import { Form, useSubmit } from 'react-router-dom'
-import type { CartItemType } from '../../models/cart'
+import type { CartItemType } from '../../types/cart'
 
 type CartItemProps = {
   item: CartItemType
