@@ -1,4 +1,3 @@
-import { redirect } from 'react-router-dom'
 import { PaymentType } from '../types/payment'
 
 export async function makePayment(payload: PaymentType) {
