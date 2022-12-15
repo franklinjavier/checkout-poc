@@ -38,8 +38,8 @@ h2 {
   cursor: pointer;
   font-weight: bold;
   border-radius: 4px;
-  padding: 2px 20px;
   color: white;
+  padding: 2px 20px;
   border: none;
   background: rgb(146, 34, 220);
   font-size: 0.9375rem;
@@ -73,6 +73,15 @@ figure {
   margin: 0;
 }
 
-label > input {
-  margin-left: 8px;
+input[type='text'],
+input[type='tel'],
+input[type='number'] {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #6b7280;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-color: rgb(212 212 216);
+  line-height: 1.5rem;
 }

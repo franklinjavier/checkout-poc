@@ -10,7 +10,7 @@ export function CartSummary({ cart }: CartSummaryProps) {
     <>
       <div>{pluralize(cart.items.length, 'Item', 'Itens')} do pedido</div>
       {cart.items.map((item) => (
-        <div style={{ display: 'flex', gap: '4px' }}>
+        <div key={item.product.sku} style={{ display: 'flex', gap: '4px' }}>
           <figure>
             <img src={item.product.imageObjects[0].thumbnail} alt={item.product.name} />
           </figure>

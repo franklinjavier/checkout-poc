@@ -1,6 +1,5 @@
-import { ActionFunctionArgs, json, useLoaderData, useRouteLoaderData } from 'react-router-dom'
+import { ActionFunctionArgs, json, Link, useLoaderData, useRouteLoaderData } from 'react-router-dom'
 import { Box } from '../components/box/box'
-import { Button } from '../components/button/button'
 import { CartItem } from '../components/cart/cart-item'
 import type { CartType } from '../types/cart'
 import { getCart } from '../models/cart'
@@ -26,6 +25,7 @@ export default function Cart() {
   const cart = useLoaderData() as LoaderData
   const config = useRouteLoaderData('root')
   const cartLength = cart.items.length
+  console.log(config)
 
   return (
     <div style={{ display: 'flex', gap: '16px' }}>
@@ -38,9 +38,9 @@ export default function Cart() {
           <CartItem key={item.product.sku} item={item} />
         ))}
       </Box>
-      <Button to="transacional/endereco" style={{ marginTop: 10 }}>
+      <Link className="btn" to="transacional/endereco" style={{ marginTop: 10 }}>
         Continuar
-      </Button>
+      </Link>
     </div>
   )
 }

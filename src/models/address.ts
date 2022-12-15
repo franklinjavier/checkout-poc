@@ -1,5 +1,4 @@
 export async function getAddress() {
-  await Promise.resolve(setTimeout(() => {}, 1000))
   return mockAddress
 }
 

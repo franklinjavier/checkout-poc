@@ -2,15 +2,17 @@ import React from 'react'
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> & {
   label?: string
+  error?: string
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(props, forwardedRef) {
-  const { type = 'text', label, disabled, ...rest } = props
+  const { type = 'text', error, label, disabled, ...rest } = props
 
   return (
-    <label style={{ display: 'block' }}>
+    <label style={{ display: 'flex', flexDirection: 'column', marginBottom: '16px' }}>
       {label}
       <input ref={forwardedRef} type={type} {...rest} />
+      {error && <span style={{ color: 'red', fontSize: '14px' }}>{error}</span>}
     </label>
   )
 })

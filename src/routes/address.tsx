@@ -5,10 +5,10 @@ import {
   Form,
   useSubmit,
   ActionFunctionArgs,
+  Link,
 } from 'react-router-dom'
 import { AddressItem } from '../components/address/address-item'
 import { Box } from '../components/box/box'
-import { Button } from '../components/button/button'
 import type { AddressType } from '../types/address'
 import { getAddress } from '../models/address'
 import { getCart } from '../models/cart'
@@ -55,9 +55,9 @@ export default function Address() {
         </Form>
       </Box>
 
-      <Button to="../transacional/pagamento" style={{ marginTop: 10 }}>
+      <Link className="btn" style={{ marginTop: 10 }} to="../transacional/pagamento">
         Usar este endereço
-      </Button>
+      </Link>
     </div>
   )
 }

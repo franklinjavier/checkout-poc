@@ -1,13 +1,7 @@
-import { Link, LinkProps } from 'react-router-dom'
+import React from 'react'
 
-type BoxProps = LinkProps & {
-  children: React.ReactNode[] | React.ReactElement | string
-}
-export function Button(props: BoxProps) {
-  return (
-    <Link
-      className="btn"
-      {...props}
-    />
-  )
-}
+type ButtonProps = React.ComponentPropsWithoutRef<'button'>
+
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, forwardedRef) {
+  return <button ref={forwardedRef} className="btn" {...props} />
+})

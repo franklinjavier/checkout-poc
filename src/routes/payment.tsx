@@ -3,31 +3,47 @@ import {
   useRouteLoaderData,
   json,
   Form,
-  useSubmit,
   ActionFunctionArgs,
+  useActionData,
   redirect,
 } from 'react-router-dom'
 import { Box } from '../components/box/box'
-import { Button } from '../components/button/button'
-import { CartItem } from '../components/cart/cart-item'
 import { CartSummary } from '../components/cart/cart-summary'
 import { Input } from '../components/input'
 import type { AddressType } from '../types/address'
 import { getAddress } from '../models/address'
 import type { CartType } from '../types/cart'
 import { getCart } from '../models/cart'
+import { PaymentType } from '../types/payment'
+import { makePayment } from '../models/payment'
 
 export async function loader() {
   const [cart, address] = await Promise.all([await getCart(), await getAddress()])
-
   return json({ cart, address })
 }
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = Object.fromEntries(await request.formData())
-  console.log(formData)
+  const errors: PaymentType = {}
 
-  return redirect('transacional/pagamento')
+  if (!formData.card) {
+    errors.card = 'Informe um número de cartão de crédito'
+  }
+  if (!formData.name) {
+    errors.name = 'Informe um títular'
+  }
+  if (!formData.expire) {
+    errors.expire = 'Informe uma data de validade'
+  }
+
+  if (Object.keys(errors).length) return json({ errors }, { status: 422 })
+
+  try {
+    await makePayment(formData)
+    return redirect('../transacional/sucesso')
+  } catch (e) {
+    return json({ e }, { status: 500 })
+  }
 }
 
 type DataLoader = {
@@ -35,31 +51,31 @@ type DataLoader = {
   cart: CartType
 }
 
+type DataAction = {
+  errors?: PaymentType
+}
+
 export default function Address() {
   const data = useLoaderData() as DataLoader
   const config = useRouteLoaderData('root')
-  console.log({ config, data })
-  const submit = useSubmit()
+  const actionData = useActionData() as DataAction
+  // console.log({ config, data, actionData })
 
   return (
     <div style={{ display: 'flex', gap: '16px' }}>
       <Box style={{ width: '75%' }}>
         <h2>Pagamento</h2>
-        <Form
-          method="post"
-          onChange={(event) => {
-            submit(event.currentTarget)
-          }}
-        >
-          <Input type="tel" name="card" label="Número de cartão" />
-          <Input type="text" name="name" label="N" />
+        <Form method="post" id="payment">
+          <Input type="tel" name="card" label="Número de cartão" error={actionData?.errors?.card} />
+          <Input type="text" name="name" label="Nome do títular" error={actionData?.errors?.name} />
+          <Input type="text" name="expire" label="Data de validade" error={actionData?.errors?.expire} />
         </Form>
       </Box>
 
       <aside style={{ width: '25%' }}>
-        <Button to="transacional/sucesso" style={{ marginBlock: 10 }}>
+        <button type="submit" className="btn" style={{ marginBlock: 10 }} form="payment">
           Finalizar Pedido
-        </Button>
+        </button>
         <CartSummary cart={data.cart} />
       </aside>
     </div>
