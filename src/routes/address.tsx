@@ -15,7 +15,7 @@ import { getCart } from '../models/cart'
 import type { CartType } from '../types/cart'
 
 export async function loader() {
-  const [cart, address] = await Promise.all([await getCart(), await getAddress()])
+  const [cart, address] = await Promise.all([getCart(), getAddress()])
 
   return json({ cart, address })
 }
