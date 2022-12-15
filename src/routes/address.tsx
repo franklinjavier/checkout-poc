@@ -7,8 +7,8 @@ import {
   ActionFunctionArgs,
   Link,
 } from 'react-router-dom'
-import { AddressItem } from '../components/address/address-item'
-import { Box } from '../components/box/box'
+import { AddressItem } from '../components/address'
+import { Box } from '../components/box'
 import type { AddressType } from '../types/address'
 import { getAddress } from '../models/address'
 import { getCart } from '../models/cart'

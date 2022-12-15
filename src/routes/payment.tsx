@@ -8,8 +8,8 @@ import {
   redirect,
   useNavigation,
 } from 'react-router-dom'
-import { Box } from '../components/box/box'
-import { CartSummary } from '../components/cart/cart-summary'
+import { Box } from '../components/box'
+import { CartSummary } from '../components/cart'
 import { Input } from '../components/input'
 import type { AddressType } from '../types/address'
 import { getAddress } from '../models/address'

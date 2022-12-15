@@ -1,6 +1,6 @@
 import { ActionFunctionArgs, json, Link, useLoaderData, useRouteLoaderData } from 'react-router-dom'
-import { Box } from '../components/box/box'
-import { CartItem } from '../components/cart/cart-item'
+import { Box } from '../components/box'
+import { CartItem } from '../components/cart'
 import type { CartType } from '../types/cart'
 import { getCart } from '../models/cart'
 import { pluralize } from '../utils/pluralize'

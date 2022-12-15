@@ -1,5 +1,5 @@
 import { Link, Outlet, useLoaderData } from 'react-router-dom'
-import { Container } from '../components/container/container'
+import { Container } from '../components/container'
 import type { Config } from '../types/config'
 import { getConfig } from '../models/config'
 

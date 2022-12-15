@@ -1,5 +1,4 @@
-import { AddressItem } from '../components/address/address-item'
-import { Box } from '../components/box/box'
+import { Box } from '../components/box'
 
 export async function loader() {
   return null
