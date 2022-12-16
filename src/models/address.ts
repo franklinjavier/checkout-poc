@@ -1,6 +1,37 @@
-export async function getAddress() {
-  return mockAddress
-}
+import { makeDomainFunction, pipe } from 'domain-functions'
+import * as z from 'zod'
+
+const addressItemSchema = z.object({
+  id: z.number(),
+  customerId: z.number(),
+  label: z.string(),
+  givenName: z.string(),
+  familyName: z.string(),
+  streetAddress: z.string(),
+  number: z.string(),
+  district: z.string(),
+  complement: z.string(),
+  postalCode: z.string(),
+  addressLocality: z.string(),
+  addressRegion: z.string(),
+  referencePoint: z.string().optional(),
+  localityCode: z.number(),
+  addressType: z.string().optional(),
+  main: z.boolean(),
+  billing: z.boolean(),
+  updatedAt: z.string(),
+  geolocation: z.object({ latitude: z.string(), longitude: z.string() }).optional(),
+  dependencyConnections: z.array(z.unknown()),
+})
+
+const getAddressItems = makeDomainFunction()(async () => mockAddress)
+const normalizeAddresses = makeDomainFunction(z.object({ items: z.array(addressItemSchema) }))(
+  async ({ items: address }) => ({
+    address,
+  }),
+)
+
+export const getAddress = pipe(getAddressItems, normalizeAddresses)
 
 const mockAddress = {
   items: [

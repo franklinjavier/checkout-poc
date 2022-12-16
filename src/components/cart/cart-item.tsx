@@ -1,7 +1,8 @@
-import type { CartItemType } from '../../types/cart'
+import { UnpackData } from 'domain-functions'
+import { getCart } from '../../models/cart'
 
 type CartItemProps = {
-  item: CartItemType
+  item: UnpackData<typeof getCart>['cart']['items'][number]
 }
 export function CartItem({ item }: CartItemProps) {
   return (

@@ -1,16 +1,16 @@
 import { Link, Outlet, useLoaderData } from 'react-router-dom'
 import { Container } from '../components/container'
-import type { Config } from '../types/config'
 import { getConfig } from '../models/config'
+import { loaderResponseOrNotFound } from '../utils/responses'
+import { UnpackData } from 'domain-functions'
 
 export async function loader() {
-  return await getConfig()
+  const result = await getConfig()
+  return loaderResponseOrNotFound(result)
 }
 
-type LoaderData = Config
-
 export default function Root() {
-  const config = useLoaderData() as LoaderData
+  const { config } = useLoaderData() as UnpackData<typeof getConfig>
 
   return (
     <>

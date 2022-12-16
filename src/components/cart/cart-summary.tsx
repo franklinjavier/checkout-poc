@@ -1,9 +1,8 @@
-import type { CartType } from '../../types/cart'
+import { UnpackData } from 'domain-functions'
+import { getCart } from '../../models/cart'
 import { pluralize } from '../../utils/pluralize'
 
-type CartSummaryProps = {
-  cart: CartType
-}
+type CartSummaryProps = UnpackData<typeof getCart>
 
 export function CartSummary({ cart }: CartSummaryProps) {
   return (

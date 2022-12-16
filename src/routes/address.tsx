@@ -1,43 +1,27 @@
-import {
-  useLoaderData,
-  useRouteLoaderData,
-  json,
-  Form,
-  useSubmit,
-  ActionFunctionArgs,
-  Link,
-} from 'react-router-dom'
+import { inputFromForm, UnpackData } from 'domain-functions'
+import { useLoaderData, Form, useSubmit, ActionFunctionArgs, Link } from 'react-router-dom'
 import { AddressItem } from '../components/address'
 import { Box } from '../components/box'
-import type { AddressType } from '../types/address'
-import { getAddress } from '../models/address'
-import { getCart } from '../models/cart'
-import type { CartType } from '../types/cart'
+import { getAddressRouteData } from '../models/compositions'
+import { loaderResponseOrNotFound } from '../utils/responses'
 
 export async function loader() {
-  const [cart, address] = await Promise.all([getCart(), getAddress()])
-
-  return json({ cart, address })
+  const result = await getAddressRouteData()
+  return loaderResponseOrNotFound(result)
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  const formData = Object.fromEntries(await request.formData())
+  const formData = await inputFromForm(request)
   console.log(formData)
 
   // await useAddress(formData.address)
   return {} // redirect('transacional/pagamento')
 }
 
-type DataLoader = {
-  address: AddressType
-  cart: CartType
-}
-
 export default function Address() {
-  const data = useLoaderData() as DataLoader
-  const config = useRouteLoaderData('root')
-  // console.log({ config, data })
+  const { address, cart } = useLoaderData() as UnpackData<typeof getAddressRouteData>
   const submit = useSubmit()
+  console.log(cart)
 
   return (
     <div style={{ display: 'flex', gap: '16px' }}>
@@ -49,7 +33,7 @@ export default function Address() {
             submit(event.currentTarget)
           }}
         >
-          {data.address.items.map((item) => (
+          {address.map((item) => (
             <AddressItem key={item.label} item={item} />
           ))}
         </Form>
