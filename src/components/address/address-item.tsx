@@ -1,7 +1,8 @@
-import type { AddressItemType } from '../../types/address'
+import { UnpackData } from 'domain-functions'
+import { getAddress } from '../../models/address'
 
 type AddressItemProps = {
-  item: AddressItemType
+  item: UnpackData<typeof getAddress>['address'][number]
 }
 export function AddressItem({ item }: AddressItemProps) {
   return (
