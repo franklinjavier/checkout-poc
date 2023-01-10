@@ -48,7 +48,7 @@ export default function Cart() {
           ))}
         </div>
       </Box>
-      <Link className="btn" to="transacional/endereco">
+      <Link className="btn" to="endereco">
         Continuar
       </Link>
     </Container>

@@ -1,11 +1,11 @@
 import { Link, NavLink, useRouteLoaderData } from 'react-router-dom'
 import { Config } from '~/types/config'
 
-const routes = [
+export const routes = [
   { href: '.', text: 'Sacola' },
-  { href: 'transacional/endereco', text: 'Endereço' },
-  { href: 'transacional/pagamento', text: 'Pagamento' },
-  { href: 'transacional/sucesso', text: 'Sucesso' },
+  { href: 'endereco', text: 'Endereço' },
+  { href: 'pagamento', text: 'Pagamento' },
+  { href: 'sucesso', text: 'Sucesso' },
 ]
 
 type ConfigData = {
@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <header className="flex items-center sm:gap-36 flex-col sm:flex-row">
-      <h1 className="sm:my-6 text-3xl font-bold tracking-tight text-indigo-500">
+      <h1 className="mb-3 sm:my-6 text-3xl font-bold tracking-tight text-indigo-500">
         <Link to=".">{config.name}</Link>
       </h1>
       <nav className="flex gap-3 mb-4 sm:mb-0">

@@ -39,7 +39,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   try {
     await makePayment(formData)
-    return redirect('../transacional/sucesso')
+    return redirect('../sucesso')
   } catch (e) {
     return json({ e }, { status: 500 })
   }

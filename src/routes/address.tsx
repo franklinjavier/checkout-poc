@@ -26,7 +26,7 @@ export async function action({ request }: ActionFunctionArgs) {
   console.log(formData)
 
   // await useAddress(formData.address)
-  return {} // redirect('transacional/pagamento')
+  return {} // redirect('pagamento')
 }
 
 type DataLoader = {
@@ -56,7 +56,7 @@ export default function Address() {
         </Form>
       </Box>
 
-      <Link className="btn" to="../transacional/pagamento">
+      <Link className="btn" to="../pagamento">
         Usar este endereço
       </Link>
     </Container>
