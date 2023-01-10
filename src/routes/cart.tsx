@@ -5,6 +5,7 @@ import type { CartType } from '../types/cart'
 import { getCart } from '../models/cart'
 import { pluralize } from '../utils/pluralize'
 import { Container } from '../components/container'
+import { Config } from '../types/config'
 
 export async function loader() {
   const cart = await getCart()
@@ -23,9 +24,13 @@ type LoaderData = {
   cart: CartType
 }
 
+type ConfigData = {
+  config: Config
+}
+
 export default function Cart() {
   const { cart } = useLoaderData() as LoaderData
-  const config = useRouteLoaderData('root')
+  const { config } = useRouteLoaderData('root') as ConfigData
   const cartLength = cart.items.length
 
   console.log(config)
@@ -34,7 +39,7 @@ export default function Cart() {
     <Container>
       <Box>
         <h2 className="font-medium text-xl mb-6">
-          Sacola ({cartLength} {pluralize(cartLength, 'Produto', 'Produtos')})
+          🛍️ Sacola ({cartLength} {pluralize(cartLength, 'Produto', 'Produtos')})
         </h2>
 
         <div className="flex gap-4 flex-col">

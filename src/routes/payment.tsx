@@ -65,7 +65,7 @@ export default function Address() {
   return (
     <Container as="fieldset" disabled={isPending}>
       <Box>
-        <h2 className="font-medium text-xl mb-6">Pagamento</h2>
+        <h2 className="font-medium text-xl mb-6">🔐 Pagamento</h2>
         <Form method="post" id="payment">
           <Input type="tel" name="card" label="Número de cartão" error={actionData?.errors?.card} />
           <Input type="text" name="name" label="Nome do títular" error={actionData?.errors?.name} />

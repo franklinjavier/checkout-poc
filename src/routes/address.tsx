@@ -43,7 +43,7 @@ export default function Address() {
   return (
     <Container>
       <Box>
-        <h2 className="font-medium text-xl mb-6">Selecione um endereço de envio</h2>
+        <h2 className="font-medium text-xl mb-6">🏠 Endereço de envio</h2>
         <Form
           method="post"
           onChange={(event) => {
