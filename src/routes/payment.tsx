@@ -54,7 +54,7 @@ type DataAction = {
   errors?: PaymentType
 }
 
-export default function Address() {
+export default function Payment() {
   const data = useLoaderData() as DataLoader
   const config = useRouteLoaderData('root')
   const actionData = useActionData() as DataAction
