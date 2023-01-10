@@ -4,11 +4,12 @@ import { CartItem } from '../components/cart'
 import type { CartType } from '../types/cart'
 import { getCart } from '../models/cart'
 import { pluralize } from '../utils/pluralize'
+import { Container } from '../components/container'
 
 export async function loader() {
   const cart = await getCart()
 
-  return json(cart)
+  return json({ cart })
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -18,28 +19,33 @@ export async function action({ request }: ActionFunctionArgs) {
   return null
 }
 
-type LoaderData = CartType
+type LoaderData = {
+  cart: CartType
+}
 
 export default function Cart() {
-  const cart = useLoaderData() as LoaderData
-  const config = useRouteLoaderData('root')
+  const { cart } = useLoaderData() as LoaderData
+  const { config } = useRouteLoaderData('root')
   const cartLength = cart.items.length
+
   console.log(config)
 
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <Container>
       <Box>
-        <h2>
+        <h2 className="font-medium text-xl mb-6">
           Sacola ({cartLength} {pluralize(cartLength, 'Produto', 'Produtos')})
         </h2>
 
-        {cart.items.map((item) => (
-          <CartItem key={item.product.sku} item={item} />
-        ))}
+        <div className="flex gap-4 flex-col">
+          {cart.items.map((item) => (
+            <CartItem key={item.product.sku} item={item} />
+          ))}
+        </div>
       </Box>
-      <Link className="btn" to="transacional/endereco" style={{ marginTop: 10 }}>
+      <Link className="btn" to="transacional/endereco">
         Continuar
       </Link>
-    </div>
+    </Container>
   )
 }

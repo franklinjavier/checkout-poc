@@ -1,17 +1,14 @@
-type BoxProps = {
-  children: React.ReactNode[] | React.ReactElement
-}
-export function Container(props: BoxProps) {
-  return (
-    <div
-      style={{
-        maxWidth: '980px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        position: 'relative',
-        padding: '20px 0px',
-      }}
-      {...props}
-    />
+import { createElement, HTMLProps } from 'react'
+
+type ContainerProps = HTMLProps<HTMLElement>
+
+export function Container({ as = 'div', children, ...props }: ContainerProps) {
+  return createElement(
+    as,
+    {
+      className: 'flex items-start gap-8 md:flex-row flex-col',
+      ...props,
+    },
+    children,
   )
 }

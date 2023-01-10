@@ -7,3 +7,4 @@ As features usadas:
 - Rota por objeto
 - Loader
 - Action
+- Form vanilla

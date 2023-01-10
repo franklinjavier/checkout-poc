@@ -17,6 +17,7 @@ import type { CartType } from '../types/cart'
 import { getCart } from '../models/cart'
 import { PaymentType } from '../types/payment'
 import { makePayment } from '../models/payment'
+import { Container } from '../components/container'
 
 export async function loader() {
   const [cart, address] = await Promise.all([getCart(), getAddress()])
@@ -62,9 +63,9 @@ export default function Address() {
   console.log({ config, data, actionData })
 
   return (
-    <fieldset style={{ display: 'flex', gap: '16px' }} disabled={isPending}>
-      <Box style={{ width: '75%' }}>
-        <h2>Pagamento</h2>
+    <Container as="fieldset" disabled={isPending}>
+      <Box>
+        <h2 className="font-medium text-xl mb-6">Pagamento</h2>
         <Form method="post" id="payment">
           <Input type="tel" name="card" label="Número de cartão" error={actionData?.errors?.card} />
           <Input type="text" name="name" label="Nome do títular" error={actionData?.errors?.name} />
@@ -72,12 +73,12 @@ export default function Address() {
         </Form>
       </Box>
 
-      <aside style={{ width: '25%' }}>
-        <button type="submit" className="btn" style={{ marginBlock: 10 }} form="payment">
+      <aside className="w-full md:w-72">
+        <button type="submit" className="btn" form="payment">
           {isPending ? 'Pagando...' : 'Finalizar Pedido'}
         </button>
         <CartSummary cart={data.cart} />
       </aside>
-    </fieldset>
+    </Container>
   )
 }

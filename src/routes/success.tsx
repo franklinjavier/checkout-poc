@@ -1,4 +1,5 @@
 import { Box } from '../components/box'
+import { Container } from '../components/container'
 
 export async function loader() {
   return null
@@ -6,15 +7,13 @@ export async function loader() {
 
 export default function Address() {
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
-      <Box>
-        <h2>Pedido realizado com sucesso!</h2>
-        <img
-          src="https://media.tenor.com/6xwjsmMIAIoAAAAd/happy-happy-dog.gif"
-          alt="Imagem sorrindo"
-          width="400"
-        />
-      </Box>
-    </div>
+    <Box>
+      <h2 className="font-medium text-xl mb-6">Pedido realizado com sucesso!</h2>
+      <img
+        src="https://media.tenor.com/6xwjsmMIAIoAAAAd/happy-happy-dog.gif"
+        alt="Imagem sorrindo"
+        width="400"
+      />
+    </Box>
   )
 }

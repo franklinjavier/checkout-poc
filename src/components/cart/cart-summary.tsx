@@ -8,17 +8,16 @@ type CartSummaryProps = {
 export function CartSummary({ cart }: CartSummaryProps) {
   return (
     <>
-      <div>{pluralize(cart.items.length, 'Item', 'Itens')} do pedido</div>
+      <h3 className="font-medium text-lg my-2">{pluralize(cart.items.length, 'Item', 'Itens')} do pedido</h3>
       {cart.items.map((item) => (
-        <div key={item.product.sku} style={{ display: 'flex', gap: '4px' }}>
-          <figure>
+        <div key={item.product.sku} className="flex gap-4">
+          <figure className="w-10 h-10 shrink-0">
             <img src={item.product.imageObjects[0].thumbnail} alt={item.product.name} />
           </figure>
           <p
+            className="overflow-hidden text-sm mb-2"
             style={{
-              fontSize: '14px',
               WebkitLineClamp: 3,
-              overflow: 'hidden',
               display: '-webkit-box',
               WebkitBoxOrient: 'vertical',
             }}

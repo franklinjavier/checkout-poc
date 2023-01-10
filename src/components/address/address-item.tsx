@@ -5,14 +5,8 @@ type AddressItemProps = {
 }
 export function AddressItem({ item }: AddressItemProps) {
   return (
-    <label style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 16 }}>
-      <input
-        type="radio"
-        name="address"
-        value={item.id}
-        defaultChecked={item.main}
-        style={{ margin: '8px 10px' }}
-      />
+    <label className="flex items-start mb-4">
+      <input type="radio" name="address" value={item.id} defaultChecked={item.main} className="mx-3 mt-2" />
 
       <address>
         <strong>{item.label}</strong>

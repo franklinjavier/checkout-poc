@@ -13,6 +13,7 @@ import type { AddressType } from '../types/address'
 import { getAddress } from '../models/address'
 import { getCart } from '../models/cart'
 import type { CartType } from '../types/cart'
+import { Container } from '../components/container'
 
 export async function loader() {
   const [cart, address] = await Promise.all([getCart(), getAddress()])
@@ -40,9 +41,9 @@ export default function Address() {
   const submit = useSubmit()
 
   return (
-    <div style={{ display: 'flex', gap: '16px' }}>
+    <Container>
       <Box>
-        <h2>Selecione um endereço de envio</h2>
+        <h2 className="font-medium text-xl mb-6">Selecione um endereço de envio</h2>
         <Form
           method="post"
           onChange={(event) => {
@@ -55,9 +56,9 @@ export default function Address() {
         </Form>
       </Box>
 
-      <Link className="btn" style={{ marginTop: 10 }} to="../transacional/pagamento">
+      <Link className="btn" to="../transacional/pagamento">
         Usar este endereço
       </Link>
-    </div>
+    </Container>
   )
 }
