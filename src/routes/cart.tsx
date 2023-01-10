@@ -25,7 +25,7 @@ type LoaderData = {
 
 export default function Cart() {
   const { cart } = useLoaderData() as LoaderData
-  const { config } = useRouteLoaderData('root')
+  const config = useRouteLoaderData('root')
   const cartLength = cart.items.length
 
   console.log(config)
