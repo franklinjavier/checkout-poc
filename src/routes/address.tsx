@@ -7,13 +7,13 @@ import {
   ActionFunctionArgs,
   Link,
 } from 'react-router-dom'
-import { AddressItem } from '../components/address'
-import { Box } from '../components/box'
-import type { AddressType } from '../types/address'
-import { getAddress } from '../models/address'
-import { getCart } from '../models/cart'
-import type { CartType } from '../types/cart'
-import { Container } from '../components/container'
+import { AddressItem } from '~/components/address'
+import { Box } from '~/components/box'
+import type { AddressType } from '~/types/address'
+import { getAddress } from '~/models/address'
+import { getCart } from '~/models/cart'
+import type { CartType } from '~/types/cart'
+import { Container } from '~/components/container'
 
 export async function loader() {
   const [cart, address] = await Promise.all([getCart(), getAddress()])

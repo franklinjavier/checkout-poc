@@ -1,5 +1,4 @@
-import { Box } from '../components/box'
-import { Container } from '../components/container'
+import { Box } from '~/components/box'
 
 export async function loader() {
   return null

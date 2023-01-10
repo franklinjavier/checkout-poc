@@ -1,4 +1,4 @@
-import type { CartItemType } from '../../types/cart'
+import type { CartItemType } from '~/types/cart'
 
 type CartItemProps = {
   item: CartItemType

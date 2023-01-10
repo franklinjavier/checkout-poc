@@ -1,4 +1,4 @@
-import type { AddressItemType } from '../../types/address'
+import type { AddressItemType } from '~/types/address'
 
 type AddressItemProps = {
   item: AddressItemType

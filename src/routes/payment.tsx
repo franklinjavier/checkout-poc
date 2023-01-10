@@ -8,16 +8,16 @@ import {
   redirect,
   useNavigation,
 } from 'react-router-dom'
-import { Box } from '../components/box'
-import { CartSummary } from '../components/cart'
-import { Input } from '../components/input'
-import type { AddressType } from '../types/address'
-import { getAddress } from '../models/address'
-import type { CartType } from '../types/cart'
-import { getCart } from '../models/cart'
-import { PaymentType } from '../types/payment'
-import { makePayment } from '../models/payment'
-import { Container } from '../components/container'
+import { Box } from '~/components/box'
+import { CartSummary } from '~/components/cart'
+import { Input } from '~/components/input'
+import type { AddressType } from '~/types/address'
+import { getAddress } from '~/models/address'
+import type { CartType } from '~/types/cart'
+import { getCart } from '~/models/cart'
+import { PaymentType } from '~/types/payment'
+import { makePayment } from '~/models/payment'
+import { Container } from '~/components/container'
 
 export async function loader() {
   const [cart, address] = await Promise.all([getCart(), getAddress()])

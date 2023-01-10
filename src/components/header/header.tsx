@@ -1,5 +1,5 @@
 import { Link, NavLink, useRouteLoaderData } from 'react-router-dom'
-import { Config } from '../../types/config'
+import { Config } from '~/types/config'
 
 const routes = [
   { href: '.', text: 'Sacola' },

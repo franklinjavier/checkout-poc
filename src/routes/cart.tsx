@@ -1,11 +1,11 @@
 import { ActionFunctionArgs, json, Link, useLoaderData, useRouteLoaderData } from 'react-router-dom'
-import { Box } from '../components/box'
-import { CartItem } from '../components/cart'
-import type { CartType } from '../types/cart'
-import { getCart } from '../models/cart'
+import { Box } from '~/components/box'
+import { CartItem } from '~/components/cart'
+import type { CartType } from '~/types/cart'
+import { getCart } from '~/models/cart'
 import { pluralize } from '../utils/pluralize'
-import { Container } from '../components/container'
-import { Config } from '../types/config'
+import { Container } from '~/components/container'
+import { Config } from '~/types/config'
 
 export async function loader() {
   const cart = await getCart()

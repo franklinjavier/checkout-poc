@@ -1,5 +1,5 @@
-import type { CartType } from '../../types/cart'
-import { pluralize } from '../../utils/pluralize'
+import type { CartType } from '~/types/cart'
+import { pluralize } from '~/utils/pluralize'
 
 type CartSummaryProps = {
   cart: CartType
